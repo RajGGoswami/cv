@@ -1,0 +1,116 @@
+<!--DOC Type tells the browser the version of HTML we are using-->
+<!DOCTYPE html>
+<!--Everything in b/w html open and close tag is html code-->
+<html lang="en">
+<!--html code can be divoded into 2 sections head and body-->
+<head>
+    <!--    the below code is telling the browser that
+    all the text in html code is encoded using utf-8 encoding system
+    This is Standard for encoding html 5
+    When encoding is wrong characters are messed up creating Mojebake
+    Unicode also accepts characters from different languages like greek,hindi etc.
+    It also accepts emojis-->
+    <meta charset="UTF-8">
+    <!--    Apart from the charset attribute meta tag also has other attributes like
+      <meta charset="UTF-8">
+      <meta name="description" content="Free Web tutorials">
+      <meta name="keywords" content="HTML, CSS, JavaScript">
+      <meta name="author" content="John Doe">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+    These meta tag tell the browser how it to render/display the webpage,
+    also the mdn web developer page example where the description meta tag text is what you see on links below
+    google search results
+    -->
+    <title>Raj's Personal Site</title>
+</head>
+<body>
+<table cellspacing="20">
+    <tr>
+        <td>
+            <img src="Raj profile pic-modified.png" alt="Raj Profile Pic">
+        </td>
+        <td>
+            <h1>Raj Goswami</h1>
+            <p><em><strong>Future Solutions Architect</strong> and <a href="https://www.stuff.co.nz/marlborough-express/114256625/from-a-dry-state-to-a-winemaking-dream">Professional Young Winemaker</a></em></p>
+            <p>A passionate and detail oriented Python developer/winemaking professional eager to develop layers of knowledge and experience whilst diversifying my skillset.</p>
+
+        </td>
+        <td>
+            <h3>Accomplishments</h3>
+            <ul>
+                <li>Sharp with statistical analysis and experience with involvement in multiple research projects</li>
+                <li>Intermediate+ Python Programmer with experience in data manipulation. Planning and building more than 50 different programming projects and designing UX/UI.</li>
+                <li>Sales and Hosting experience, confident at public speaking (Chosen as the Graduation speaker for NMIT in 2019)</li>
+                </ul>
+            </td>
+        </tr>
+</table>
+
+<!--    alt text attribute gives that text incase image is not avialable for some reason,
+Google's algorithm also works with this description/text of image-->
+
+<!--    In between anchor tag <a>Link tag</a>>-->
+        <!--
+use em tag which emphasis the text not just styles it to italic
+similarly use <strong> tag instead of <b> bold tag strong importance to the text and doesn't just style it
+-->
+    <hr size="3" noshade>
+    <h3>Work Experience</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Dates</th>
+            <th>Work</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2018-2020</td>
+            <td>Laboratory Technician</td>
+        </tr>
+        <tr>
+            <td>2020-2021</td>
+            <td>Assitant Winemaker</td>
+        </tr>
+        <tr>
+            <td>2022-Now</td>
+            <td>Intermediate+ Python Develloper and Web Designer</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        </tfoot>
+<!--        In the code above if you use just th element and not declare thead & tbody
+            The result is the same but, its better to declare them as sometimes you might
+            want to isolate thead and tbody in CSS/JS to make them function/style differently-->
+    </table>
+    <hr size="3" noshade>
+    <h3>Skills</h3>
+    <table>
+        <tr>
+            <table cellspacing="10">
+               <tr>
+                   <td>
+                      Python Programming
+                   </td>
+                   <td> 🟩 🟩 🟩 🟩 🟩</td>
+                   <td>Leadership</td>
+                   <td>🟩 🟩 🟩 🟩 🟩</td>
+               </tr>
+                <tr>
+                    <td>
+                        Web Development
+                    </td>
+                    <td>
+                        🟩 🟩 🟩 🟩
+                    </td>
+                    <td>Public Speaking</td>
+                    <td>🟩 🟩 🟩 🟩 🟩</td>
+                </tr>
+            </table>
+    </table>
+    <br>
+    <a href="hobbies.html">My Hobbies</a>
+    <a href="Contact_details.html">Contact Me</a>
+</body>
+</html>
