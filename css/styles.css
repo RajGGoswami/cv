@@ -9,6 +9,7 @@ margin: 0;
 text-align:center;
 font-family: 'Merriweather', serif;
 color: #40514E;
+
 }
 
 h1 {
@@ -23,14 +24,14 @@ font-size: 2.5rem;
 color: #47abab;
 font-weight: normal;
 }
+
 h3 {
 font-family: 'Montserrat', sans-serif;
 color: #11999E;
 }
 
-
 .footer-link{
-margin-right: 40px;
+margin-right: 2%;
 }
 .footer-link:hover{
 color: #EAF6F6;
@@ -52,7 +53,7 @@ padding-top: 100px;
 
 .bottom-container {
 background-color: #66BFBF;
-margin-bottom: 0px;
+margin: 60px auto 0px auto;
 padding: 40px;
 line-height: 2;
 }
@@ -84,13 +85,13 @@ top: 80px;
 height: 250px;
 }
 .python-logo {
-width: 30%;
+width: 25%;
 float: left;
 margin-right: 30px;
 
 }
 .business {
-width: 30%;
+width: 25%;
 float: right;
 margin-left: 20px;
 }
@@ -122,9 +123,10 @@ color: #40514E;
         border-style: none;
         border-top: dotted 5px #d8eeee;
         width:5%;
+        margin: auto;
         }
 .contact-me {
-margin: 100px auto 100px auto;
+margin: 100px auto 60px auto;
 line-height: 2;
 width: 50%
 }
