@@ -1,0 +1,107 @@
+:root{
+  --bg:#fafafa;
+  --accent1: #3bb78f;   /* tweak to match the greenish gradient */
+  --accent2: #0bab64;
+  --muted:#666;
+  --glass: rgba(255,255,255,0.6);
+  --card-shadow: 0 8px 30px rgba(20,20,40,0.06);
+  --radius: 14px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:linear-gradient(180deg,#fbfcfd 0%, #fff 100%);
+  color:#0b0b0b;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* container */
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* header */
+.site-header{
+  position:fixed;left:0;right:0;top:0;z-index:80;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  transition: transform .28s ease, box-shadow .28s;
+}
+.site-header.hide{transform:translateY(-100%)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 20px}
+.logo{font-family:"Poppins",sans-serif;font-weight:700;letter-spacing:-0.02em;text-transform:none;color:#111;text-decoration:none}
+.logo .dot{color:var(--accent1);margin-left:4px}
+.site-nav a{margin-left:18px;text-decoration:none;color:var(--muted);font-weight:500}
+.site-nav a.cta{padding:8px 12px;border-radius:10px;background:transparent;border:1px solid rgba(0,0,0,0.06)}
+
+/* hero */
+.hero{position:relative;padding:110px 0 80px;overflow:hidden}
+.hero-inner{display:flex;flex-direction:column;gap:18px;padding:40px 0}
+.hero-title{
+  font-family:"Poppins",sans-serif;
+  font-size: clamp(34px, 6.6vw, 72px);
+  line-height:1.02;
+  margin:0;
+  letter-spacing:-0.02em;
+}
+.hero-sub{max-width:680px;color:var(--muted);font-size:18px}
+.accent{background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* hero background decorative gradient */
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background: radial-gradient(circle at 20% 20%, rgba(59,183,143,0.14), transparent 8%),
+              radial-gradient(circle at 85% 60%, rgba(11,186,100,0.12), transparent 14%);
+}
+
+/* sections */
+.section{padding:56px 0}
+.section.soft{padding:48px 0;background:linear-gradient(180deg, rgba(250,250,250,0.6), transparent)}
+.section-title{font-family:"Poppins",sans-serif;font-size:28px;margin:0 0 18px}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--card-shadow);
+  cursor:pointer;transition:transform .28s ease, box-shadow .28s;
+  display:flex;flex-direction:column;
+}
+.card:focus{outline:3px solid rgba(11,186,100,0.12)}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(20,20,40,0.09)}
+.card-media{height:170px;background-size:cover;background-position:center}
+.card-body{padding:18px}
+.card-body h3{margin:0 0 6px;font-size:18px}
+.muted{color:var(--muted);font-size:14px}
+
+/* about grid */
+.about-grid{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:center}
+.about-photo img{width:100%;border-radius:var(--radius);object-fit:cover;box-shadow:var(--card-shadow)}
+
+/* notes */
+.notes-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.notes-list a{display:block;padding:12px;border-radius:10px;background:#fff;border:1px solid rgba(0,0,0,0.03);text-decoration:none;color:#111}
+
+/* footer */
+.site-footer{padding:32px 0;border-top:1px solid rgba(0,0,0,0.04);background:transparent}
+.footer-inner{display:flex;justify-content:space-between;align-items:center}
+
+/* preview modal */
+.preview{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(12,12,20,0.45);opacity:0;pointer-events:none;transition:opacity .22s;}
+.preview.open{opacity:1;pointer-events:auto}
+.preview-inner{background:#fff;border-radius:16px;max-width:880px;width:92%;padding:20px;position:relative}
+.preview-close{position:absolute;right:14px;top:14px;border:0;background:none;font-size:18px;cursor:pointer}
+
+/* responsive */
+@media (max-width:980px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid{grid-template-columns:1fr}
+  .site-nav{display:none}
+  .nav-toggle{display:inline-block}
+}
+@media (max-width:620px){
+  .grid{grid-template-columns:1fr}
+  .hero{padding-top:90px}
+}
