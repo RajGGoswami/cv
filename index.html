@@ -1,59 +1,176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Raj Goswami</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="favicon.ico">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Product Designer</title>
+
+  <!-- Fonts (inter for body, poppins for headings) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="top-container">
-        <img class="top-cloud" src="images/cloud.png" alt="cloud-img">
-        <h1><em>I'm Raj.</em></h1>
-        <h2>a python <span class="pro">pro</span>grammer.</h2>
-        <img class="bottom-cloud" src="images/cloud.png" alt="cloud-img">
-        <img src="images/mountain.png" alt="mountain-img">
+  <header id="site-header" class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="#" class="logo">yourname<span class="dot">.</span></a>
+      </div>
+
+      <nav class="site-nav">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#notes">Notes</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
     </div>
-    <div class="middle-container">
-  <div class="profile">
-    <img class="profile-pic" src="images/Raj profile pic-modified.png" alt="profile-img">
-    <h2>Hello.</h2>
-    <p class="profile-text">I'm Raj, an energetic and enthusiatic self taught python programmer and web designer based in New Zealand.</p>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <h1 class="hero-title">
+          Hi — I’m <span class="accent">Your Name</span>.<br />
+          Product Designer.
+        </h1>
+        <p class="hero-sub">I design delightful interfaces and build front-end prototypes. Available for freelance & short-term contracts.</p>
+        <p class="hero-actions">
+          <a class="btn" href="#work">See my work</a>
+          <a class="btn btn-ghost" href="#about">About me</a>
+        </p>
+      </div>
+      <div class="hero-bg"></div>
+    </section>
+
+    <!-- WORK GRID -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2 class="section-title">Selected work</h2>
+        <div class="grid">
+          <!-- Repeat these .card blocks for each project -->
+          <article class="card" tabindex="0" data-title="Project One" data-desc="Short synopsis of project one.">
+            <div class="card-media" style="background-image:url('images/project-1.jpg')"></div>
+            <div class="card-body">
+              <h3>Project One</h3>
+              <p class="muted">UX / Product / Front-end</p>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" data-title="Project Two" data-desc="Short synopsis of project two.">
+            <div class="card-media" style="background-image:url('images/project-2.jpg')"></div>
+            <div class="card-body">
+              <h3>Project Two</h3>
+              <p class="muted">Design System / Branding</p>
+            </div>
+          </article>
+
+          <article class="card" tabindex="0" data-title="23" data-desc="Experimental visual exploration.">
+            <div class="card-media" style="background-image:url('images/project-3.jpg')"></div>
+            <div class="card-body">
+              <h3>23</h3>
+              <p class="muted">Illustration / Interaction</p>
+            </div>
+          </article>
+
+          <!-- more cards... -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section soft">
+      <div class="container about-grid">
+        <div class="about-text">
+          <h2>About</h2>
+          <p>I’m a product designer based in [City]. I craft product experiences and prototypes, and enjoy shipping front-end work. I love playful micro-interactions and clean typography.</p>
+          <p>Skills: Product Design · Interaction · Front-end (HTML/CSS/JS) · Prototyping</p>
+          <p><a class="link" href="#contact">Get in touch →</a></p>
+        </div>
+        <div class="about-photo">
+          <img src="images/portrait.jpg" alt="Your name portrait" />
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTES -->
+    <section id="notes" class="section">
+      <div class="container">
+        <h2 class="section-title">Notes</h2>
+        <ul class="notes-list">
+          <li><a href="#">Writing about design systems</a></li>
+          <li><a href="#">Designing for dark mode</a></li>
+          <li><a href="#">Working with product teams</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <footer id="contact" class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>Your Name</strong>
+          <div class="muted">Product Designer — Dublin (or your city)</div>
+        </div>
+        <div class="footer-actions">
+          <a class="link" href="mailto:you@example.com">you@example.com</a>
+          <a class="link" href="https://dribbble.com" target="_blank" rel="noopener">Dribbble</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Project preview modal (simple) -->
+  <div id="preview" class="preview" aria-hidden="true">
+    <div class="preview-inner">
+      <button id="preview-close" class="preview-close" aria-label="Close">✕</button>
+      <div id="preview-content">
+        <h3 id="preview-title"></h3>
+        <p id="preview-desc"></p>
+        <div class="preview-images">
+          <img src="images/project-1.jpg" alt="" />
+        </div>
+      </div>
+    </div>
   </div>
-  <hr>
-  <div class="skills">
-    <h2>My Skills.</h2>
-    <div class="skill-row">
-      <img class="python-logo" src="images/python-logo.png" alt="pythonlogo-img">
-      <h3>Intermediate+ Python Programmer</h3>
-      <p class="python-para">I have developed and designed more than 50 projects and created dozens of bot automations. Currently, I am swiftly moving forwards to enhance my skills and knowledge from the London's App Brewery.</p>
-    </div>
-    <div class="skill-row">
-      <img class="business" src="images/business.png" alt="business-img">
-      <h3>Business & Marketing</h3>
-      <p class="business-para">Professionally, I have been very fortunate to diversify my skillset at a very young age. I have experience in Sales, Marketing, Business Management, Laboratory and Research. </p>
-    </div>
-  </div>
-   <hr>
-  <div class="contact-me">
 
-    <h2>Get In Touch</h2>
-    <h3>I'm available for freelance work. </h3>
-    <p class="contact-text">I absolutely love to work with technology. So, if you have a project where I can help or just fancy saying hey, then get it touch.</p>
+  <script>
+    // NAV hide on scroll (simple)
+    (function(){
+      const header = document.getElementById('site-header');
+      let last = 0;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        if (y > last && y > 80) header.classList.add('hide');
+        else header.classList.remove('hide');
+        last = y;
+      });
 
-  </div>
-    </div>
-    <a class="btn" href="mailto:rudrarajgoswami@gmail.com">CONTACT ME</a>
-    <div class="bottom-container">
-  <a class="footer-link" href="https://www.linkedin.com/">LinkedIn</a>
-  <a class="footer-link" href="https://twitter.com/">Twitter</a>
-  <a class="footer-link" href="https://www.appbrewery.co/">The App Brewery</a>
-  <p class="footer-text">© 2022 Rudraraj Goswami.</p>
-</div>
-
-
+      // card -> modal preview
+      const preview = document.getElementById('preview');
+      const title = document.getElementById('preview-title');
+      const desc = document.getElementById('preview-desc');
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+          title.textContent = card.dataset.title;
+          desc.textContent = card.dataset.desc;
+          preview.setAttribute('aria-hidden', 'false');
+          preview.classList.add('open');
+        });
+      });
+      document.getElementById('preview-close').addEventListener('click', () => {
+        preview.setAttribute('aria-hidden', 'true');
+        preview.classList.remove('open');
+      });
+      preview.addEventListener('click', (e) => {
+        if (e.target === preview) {
+          preview.setAttribute('aria-hidden', 'true');
+          preview.classList.remove('open');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
