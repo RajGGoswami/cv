@@ -3,136 +3,187 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Personal Portfolio Website</title>
+  <title>Your Name — Portfolio</title>
   <meta name="description" content="Personal portfolio — projects, experience, contact." />
+
+  <!-- Google Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind Play CDN config: custom colors & fonts -->
+  <script>
+    window.tailwindConfig = {
+      theme: {
+        extend: {
+          colors: {
+            sitebgstart: '#071023',
+            sitebgend: '#0b1220',
+            card: '#0b1220',
+            accent: '#47abab',
+            accent2: '#34d399',
+            muted: '#9aa6b2'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial']
+          },
+          borderRadius: {
+            xl: '12px'
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- small custom css -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="container">
-      <a class="brand" href="#">Your Name</a>
-      <nav class="nav" id="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
+<body class="min-h-screen bg-gradient-to-b from-sitebgstart to-sitebgend text-[#e6eef5] antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-[rgba(8,12,18,0.6)] backdrop-blur border-b border-white/5">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-6">
+      <a class="font-semibold text-lg" href="#">Your Name</a>
+
+      <nav id="nav" class="ml-auto hidden md:flex gap-6 items-center">
+        <a href="#home" class="text-muted hover:text-white transition">Home</a>
+        <a href="#about" class="text-muted hover:text-white transition">About</a>
+        <a href="#projects" class="text-muted hover:text-white transition">Projects</a>
+        <a href="#experience" class="text-muted hover:text-white transition">Experience</a>
+        <a href="#contact" class="text-muted hover:text-white transition">Contact</a>
       </nav>
-      <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+      <button id="navToggle" class="md:hidden ml-auto text-2xl" aria-label="Toggle navigation">☰</button>
     </div>
   </header>
 
+  <!-- Main -->
   <main>
-    <!-- Hero -->
-    <section id="home" class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1 class="title">Hi — I’m <span class="accent">Your Name</span></h1>
-          <p class="subtitle">Product Designer / Developer — I build useful and beautiful digital products.</p>
-          <p><a class="cta" href="#projects">See my work</a></p>
+    <!-- HERO -->
+    <section id="home" class="py-12">
+      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
+        <div class="flex-1 min-w-0">
+          <h1 class="text-4xl md:text-5xl font-bold leading-tight">Hi — I’m <span class="text-accent">Your Name</span></h1>
+          <p class="mt-3 text-muted max-w-2xl">Product Designer / Frontend Developer — I build useful and beautiful digital products and interfaces.</p>
+          <div class="mt-6">
+            <a href="#projects" class="inline-block px-4 py-2 rounded-xl font-semibold bg-gradient-to-r from-accent to-accent2 text-black">See my work</a>
+          </div>
         </div>
-        <div class="hero-image">
-          <img src="assets/avatar.png" alt="Your avatar" />
+
+        <div class="w-44 h-44 md:w-48 md:h-48 shrink-0">
+          <img src="assets/avatar.png" alt="Your avatar" class="w-full h-full object-cover rounded-full border-[4px] border-white/5">
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section">
-      <div class="container">
-        <h2>About</h2>
-        <p>Short intro: who you are, what you do, and what you love building. Keep 2–3 sentences here.</p>
-        <ul class="skills">
-          <li>Product Design</li>
-          <li>UI / UX</li>
-          <li>Frontend (HTML/CSS/JS)</li>
+    <!-- ABOUT -->
+    <section id="about" class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl font-semibold">About</h2>
+        <p class="mt-3 text-muted max-w-3xl">Short intro: who you are, what you do, and what you love building. Keep 2–3 sentences here. This paragraph mirrors the tone and content from your original file so it feels familiar and consistent.</p>
+
+        <ul class="mt-4 flex flex-wrap gap-3">
+          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">Product Design</li>
+          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">UI / UX</li>
+          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">Frontend (HTML/CSS/JS)</li>
         </ul>
       </div>
     </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-          <article class="project">
-            <img src="assets/project-1.png" alt="Project 1 screenshot" />
-            <h3>Project One</h3>
-            <p>Brief description of project one — what it does and your role.</p>
-            <p class="project-links">
-              <a href="#" target="_blank" rel="noopener">Live</a> ·
-              <a href="#" target="_blank" rel="noopener">Code</a>
+    <!-- PROJECTS -->
+    <section id="projects" class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl font-semibold">Projects</h2>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <article class="bg-white/3 rounded-xl p-4">
+            <img src="assets/project-1.png" alt="Project 1" class="w-full h-36 object-cover rounded-md">
+            <h3 class="mt-3 font-semibold text-lg">Project One</h3>
+            <p class="text-muted mt-1">Brief description — what it does and your role.</p>
+            <p class="mt-3">
+              <a class="font-semibold text-accent hover:underline mr-3" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="font-semibold text-accent hover:underline" href="#" target="_blank" rel="noopener">Code</a>
             </p>
           </article>
 
-          <article class="project">
-            <img src="assets/project-1.png" alt="Project 2 screenshot" />
-            <h3>Project Two</h3>
-            <p>Another short description — highlight the impact or tech used.</p>
-            <p class="project-links">
-              <a href="#" target="_blank" rel="noopener">Live</a> ·
-              <a href="#" target="_blank" rel="noopener">Code</a>
+          <article class="bg-white/3 rounded-xl p-4">
+            <img src="assets/project-2.png" alt="Project 2" class="w-full h-36 object-cover rounded-md">
+            <h3 class="mt-3 font-semibold text-lg">Project Two</h3>
+            <p class="text-muted mt-1">Another short description — highlight the impact or tech used.</p>
+            <p class="mt-3">
+              <a class="font-semibold text-accent hover:underline mr-3" href="#" target="_blank" rel="noopener">Live</a>
+              <a class="font-semibold text-accent hover:underline" href="#" target="_blank" rel="noopener">Code</a>
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Experience -->
-    <section id="experience" class="section">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>Job Title — Company</h4>
-            <span class="muted">2022 — Present</span>
-            <p>Short summary of responsibilities and impact.</p>
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl font-semibold">Experience</h2>
+        <div class="mt-6 space-y-4">
+          <div class="bg-white/3 p-4 rounded-xl">
+            <h4 class="font-semibold">Senior Product Designer — Company</h4>
+            <span class="text-muted text-sm">2022 — Present</span>
+            <p class="mt-2 text-muted">Short summary of responsibilities and impact.</p>
           </div>
-          <div class="timeline-item">
-            <h4>Job Title — Company</h4>
-            <span class="muted">2019 — 2022</span>
-            <p>Short summary of responsibilities and impact.</p>
+
+          <div class="bg-white/3 p-4 rounded-xl">
+            <h4 class="font-semibold">Product Designer — Company</h4>
+            <span class="text-muted text-sm">2019 — 2022</span>
+            <p class="mt-2 text-muted">Short summary of responsibilities and impact.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="section contact-section">
-      <div class="container">
-        <h2>Contact</h2>
-        <p>If you’d like to work together or say hello — email me at <a href="mailto:you@example.com">you@example.com</a>.</p>
-        <form class="contact-form" action="#" onsubmit="alert('Replace form action with your endpoint or mailto link.'); return false;">
-          <label>
-            <span>Name</span>
-            <input type="text" name="name" required />
+    <!-- CONTACT -->
+    <section id="contact" class="py-12">
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-2xl font-semibold">Contact</h2>
+        <p class="mt-3 text-muted">If you’d like to work together or say hello — email me at <a class="text-accent" href="mailto:you@example.com">you@example.com</a>.</p>
+
+        <form class="mt-6 max-w-xl grid gap-3" action="#" onsubmit="alert('Replace form action with your endpoint or mailto link.'); return false;">
+          <label class="flex flex-col text-muted">
+            <span class="mb-1">Name</span>
+            <input class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" type="text" name="name" required>
           </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="email" required />
+
+          <label class="flex flex-col text-muted">
+            <span class="mb-1">Email</span>
+            <input class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" type="email" name="email" required>
           </label>
-          <label>
-            <span>Message</span>
-            <textarea name="message" rows="4" required></textarea>
+
+          <label class="flex flex-col text-muted">
+            <span class="mb-1">Message</span>
+            <textarea class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" name="message" rows="4" required></textarea>
           </label>
-          <button type="submit" class="btn">Send message</button>
+
+          <button class="w-max px-4 py-2 rounded-xl bg-accent text-black font-semibold">Send message</button>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container">
+  <!-- Footer -->
+  <footer class="border-t border-white/5 mt-12">
+    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-muted">
       <p>© <span id="year"></span> Your Name — Built with ❤️</p>
     </div>
   </footer>
 
-<script>
-  // small script for nav toggle and year
-  document.getElementById('year').textContent = new Date().getFullYear();
-  document.getElementById('navToggle').addEventListener('click', function () {
-    document.getElementById('nav').classList.toggle('open');
-  });
-</script>
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // nav toggle (mobile)
+    const navToggle = document.getElementById('navToggle');
+    const nav = document.getElementById('nav');
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('hidden');
+    });
+  </script>
 </body>
 </html>
