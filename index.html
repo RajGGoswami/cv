@@ -1,189 +1,1876 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Personal portfolio — projects, experience, contact." />
-
-  <!-- Google Inter font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind Play CDN config: custom colors & fonts -->
-  <script>
-    window.tailwindConfig = {
-      theme: {
-        extend: {
-          colors: {
-            sitebgstart: '#071023',
-            sitebgend: '#0b1220',
-            card: '#0b1220',
-            accent: '#47abab',
-            accent2: '#34d399',
-            muted: '#9aa6b2'
-          },
-          fontFamily: {
-            sans: ['Inter', 'system-ui', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial']
-          },
-          borderRadius: {
-            xl: '12px'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevPortfolio - Full Stack Developer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      }
-    }
-  </script>
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- small custom css -->
-  <link rel="stylesheet" href="styles.css" />
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #1e293b;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #5ebbaa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #5ebbaa;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(94, 187, 170, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 20%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(94, 187, 170, 0.1);
+            color: #5ebbaa;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #5ebbaa;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .highlight {
+            color: #e07a5f;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background: #5ebbaa;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #4a9a8a;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(2) {
+            animation-delay: -2s;
+        }
+
+        .floating-element:nth-child(3) {
+            animation-delay: -4s;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: #e07a5f;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .about-text h3 {
+            color: #5ebbaa;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #5ebbaa;
+        }
+
+        .about-text p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-stat {
+            text-align: center;
+        }
+
+        .about-stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #5ebbaa;
+        }
+
+        .about-stat-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .skills-grid h3 {
+            color: #5ebbaa;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid #5ebbaa;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .skill-icon {
+            width: 48px;
+            height: 48px;
+            background: #5ebbaa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .skill-content h4 {
+            color: #1e293b;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-content p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .projects-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .projects-stat {
+            text-align: center;
+        }
+
+        .projects-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .projects-stat-number.teal { color: #5ebbaa; }
+        .projects-stat-number.coral { color: #e07a5f; }
+        .projects-stat-number.blue { color: #3b82f6; }
+
+        .projects-stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .projects-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-search {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            min-width: 300px;
+        }
+
+        .filter-dropdown {
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: white;
+            cursor: pointer;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .project-featured {
+            background: #5ebbaa;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .project-category {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .project-category.game { background: rgba(139, 92, 246, 0.1); color: #8b5cf6; }
+        .project-category.desktop { background: rgba(94, 187, 170, 0.1); color: #5ebbaa; }
+        .project-category.web { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+        .project-category.mobile { background: rgba(59, 130, 246, 0.1); color: #3b82f6; }
+
+        .project-description {
+            color: #64748b;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .project-stats span {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .project-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-project {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-project.code {
+            background: #5ebbaa;
+            color: white;
+        }
+
+        .btn-project.code:hover {
+            background: #4a9a8a;
+        }
+
+        .btn-project.live {
+            background: white;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-project.live:hover {
+            background: #f8fafc;
+        }
+
+        /* Experience & Education */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #5ebbaa;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            margin-left: 4rem;
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #5ebbaa;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #5ebbaa;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .timeline-company {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-type {
+            background: rgba(94, 187, 170, 0.1);
+            color: #5ebbaa;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            color: #64748b;
+            font-size: 0.875rem;
+            text-align: right;
+        }
+
+        .timeline-location {
+            color: #64748b;
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-achievements {
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-achievements h4 {
+            color: #e07a5f;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline-achievements ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-achievements li {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-achievements li::before {
+            content: '•';
+            color: #5ebbaa;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline-technologies {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-form h3 {
+            color: #5ebbaa;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-form p {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #374151;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #5ebbaa;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info h3 {
+            color: #5ebbaa;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            color: #64748b;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #5ebbaa;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .contact-details h4 {
+            color: #374151;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .social-links h4 {
+            color: #5ebbaa;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #5ebbaa;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 5rem;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-stats {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            .projects-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .filter-search {
+                min-width: auto;
+                width: 100%;
+            }
+
+            .timeline {
+                margin-left: 1rem;
+            }
+
+            .timeline::before {
+                left: 1rem;
+            }
+
+            .timeline-item {
+                margin-left: 2.5rem;
+            }
+
+            .timeline-item::before {
+                left: -2rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .timeline-date {
+                text-align: left;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(94, 187, 170, 0.2);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: #5ebbaa;
+            transition: width 0.1s ease;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-b from-sitebgstart to-sitebgend text-[#e6eef5] antialiased">
-
-  <!-- Header -->
-  <header class="sticky top-0 z-40 bg-[rgba(8,12,18,0.6)] backdrop-blur border-b border-white/5">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center gap-6">
-      <a class="font-semibold text-lg" href="#">Your Name</a>
-
-      <nav id="nav" class="ml-auto hidden md:flex gap-6 items-center">
-        <a href="#home" class="text-muted hover:text-white transition">Home</a>
-        <a href="#about" class="text-muted hover:text-white transition">About</a>
-        <a href="#projects" class="text-muted hover:text-white transition">Projects</a>
-        <a href="#experience" class="text-muted hover:text-white transition">Experience</a>
-        <a href="#contact" class="text-muted hover:text-white transition">Contact</a>
-      </nav>
-
-      <button id="navToggle" class="md:hidden ml-auto text-2xl" aria-label="Toggle navigation">☰</button>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
     </div>
-  </header>
 
-  <!-- Main -->
-  <main>
-    <!-- HERO -->
-    <section id="home" class="py-12">
-      <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-8">
-        <div class="flex-1 min-w-0">
-          <h1 class="text-4xl md:text-5xl font-bold leading-tight">Hi — I’m <span class="text-accent">Your Name</span></h1>
-          <p class="mt-3 text-muted max-w-2xl">Product Designer / Frontend Developer — I build useful and beautiful digital products and interfaces.</p>
-          <div class="mt-6">
-            <a href="#projects" class="inline-block px-4 py-2 rounded-xl font-semibold bg-gradient-to-r from-accent to-accent2 text-black">See my work</a>
-          </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                DevPortfolio
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
+    </header>
 
-        <div class="w-44 h-44 md:w-48 md:h-48 shrink-0">
-          <img src="assets/avatar.png" alt="Your avatar" class="w-full h-full object-cover rounded-full border-[4px] border-white/5">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="status-badge">
+                    <div class="status-dot"></div>
+                    Available for work
+                </div>
+                <h1>
+                    Full <span class="highlight">Stack</span><br>
+                    Developer
+                </h1>
+                <p>
+                    Passionate developer with 100+ projects and a track record of building innovative solutions. I specialize in modern web technologies and love turning ideas into reality.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-download"></i>
+                        Download CV
+                    </a>
+                    <a href="https://github.com/yourusername" class="btn btn-secondary">
+                        <i class="fab fa-github"></i>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" class="btn btn-secondary">
+                        <i class="fab fa-linkedin"></i>
+                        LinkedIn
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <i class="fas fa-code"></i>
+                            100+
+                        </div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <i class="fas fa-calendar"></i>
+                            5+
+                        </div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">
+                            <i class="fas fa-tools"></i>
+                            50+
+                        </div>
+                        <div class="stat-label">Technologies</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="floating-element" style="top: 20%; right: 20%;">
+                        <i class="fab fa-react" style="font-size: 2rem; color: #61dafb;"></i>
+                    </div>
+                    <div class="floating-element" style="top: 60%; right: 10%;">
+                        <i class="fab fa-node-js" style="font-size: 2rem; color: #68a063;"></i>
+                    </div>
+                    <div class="floating-element" style="top: 40%; right: 40%;">
+                        <i class="fab fa-js-square" style="font-size: 2rem; color: #f7df1e;"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="py-12">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-2xl font-semibold">About</h2>
-        <p class="mt-3 text-muted max-w-3xl">Short intro: who you are, what you do, and what you love building. Keep 2–3 sentences here. This paragraph mirrors the tone and content from your original file so it feels familiar and consistent.</p>
-
-        <ul class="mt-4 flex flex-wrap gap-3">
-          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">Product Design</li>
-          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">UI / UX</li>
-          <li class="bg-white/3 px-3 py-1 rounded-lg text-muted">Frontend (HTML/CSS/JS)</li>
-        </ul>
-      </div>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <h2 class="section-title">About <span class="highlight">Me</span></h2>
+            <p class="section-subtitle">Passionate about creating digital experiences that make a difference</p>
+            <div class="section-badge">
+                <i class="fas fa-heart"></i>
+                Crafted with passion ☕
+            </div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3><i class="fas fa-route"></i> My Journey</h3>
+                <p>
+                    I'm a passionate full-stack developer with over 5 years of experience building web applications and digital solutions. My journey started with curiosity about how websites work, and it has evolved into a deep love for creating meaningful digital experiences.
+                </p>
+                <p>
+                    With over 100 projects under my belt, I've worked across various industries and technologies, always striving to learn and implement the latest best practices. I believe in writing clean, maintainable code and creating user experiences that are both beautiful and functional.
+                </p>
+                <p>
+                    When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community through blog posts and mentoring.
+                </p>
+                <div class="about-stats">
+                    <div class="about-stat">
+                        <div class="about-stat-number">∞</div>
+                        <div class="about-stat-label">Coffee Cups</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-number">24/7</div>
+                        <div class="about-stat-label">Learning Mode</div>
+                    </div>
+                </div>
+            </div>
+            <div class="skills-grid">
+                <h3><i class="fas fa-tools"></i> What I Do</h3>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Frontend Development</h4>
+                        <p>Building responsive, performant web applications with modern frameworks and best practices.</p>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Backend Development</h4>
+                        <p>Designing scalable APIs and database architectures for robust server-side solutions.</p>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Mobile Development</h4>
+                        <p>Creating cross-platform mobile applications with React Native and Flutter.</p>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>UI/UX Design</h4>
+                        <p>Crafting intuitive user experiences with attention to detail and accessibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="py-12">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-2xl font-semibold">Projects</h2>
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">A showcase of my development journey - 108 projects and counting</p>
+        </div>
+        <div class="projects-stats">
+            <div class="projects-stat">
+                <div class="projects-stat-number teal">108</div>
+                <div class="projects-stat-label">Total Projects</div>
+            </div>
+            <div class="projects-stat">
+                <div class="projects-stat-number coral">50+</div>
+                <div class="projects-stat-label">Technologies</div>
+            </div>
+            <div class="projects-stat">
+                <div class="projects-stat-number blue">25+</div>
+                <div class="projects-stat-label">Live Demos</div>
+            </div>
+        </div>
+        <div class="projects-filter">
+            <input type="text" placeholder="Search projects, technologies..." class="filter-search">
+            <select class="filter-dropdown">
+                <option>All Categories</option>
+                <option>Web App</option>
+                <option>Mobile App</option>
+                <option>Desktop App</option>
+                <option>Game</option>
+            </select>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 001</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category game">Game</div>
+                <p class="project-description">
+                    A comprehensive game built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Jupyter</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 57</span>
+                    <span><i class="fas fa-eye"></i> 66</span>
+                    <span><i class="fas fa-code-branch"></i> 6</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 002</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category desktop">Desktop App</div>
+                <p class="project-description">
+                    A comprehensive desktop app built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Electron</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">SQLite</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 44</span>
+                    <span><i class="fas fa-eye"></i> 45</span>
+                    <span><i class="fas fa-code-branch"></i> 14</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
 
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <article class="bg-white/3 rounded-xl p-4">
-            <img src="assets/project-1.png" alt="Project 1" class="w-full h-36 object-cover rounded-md">
-            <h3 class="mt-3 font-semibold text-lg">Project One</h3>
-            <p class="text-muted mt-1">Brief description — what it does and your role.</p>
-            <p class="mt-3">
-              <a class="font-semibold text-accent hover:underline mr-3" href="#" target="_blank" rel="noopener">Live</a>
-              <a class="font-semibold text-accent hover:underline" href="#" target="_blank" rel="noopener">Code</a>
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 003</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category web">Web App</div>
+                <p class="project-description">
+                    A comprehensive web app built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 59</span>
+                    <span><i class="fas fa-eye"></i> 69</span>
+                    <span><i class="fas fa-code-branch"></i> 23</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 004</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category mobile">Mobile App</div>
+                <p class="project-description">
+                    A comprehensive mobile app built with modern technologies. This project demonstrates advanced concepts and best practices in mobile development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Redux</span>
+                    <span class="tech-tag">Firebase</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 32</span>
+                    <span><i class="fas fa-eye"></i> 87</span>
+                    <span><i class="fas fa-code-branch"></i> 12</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 005</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category web">Web App</div>
+                <p class="project-description">
+                    A comprehensive web app built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Angular</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">MongoDB</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 28</span>
+                    <span><i class="fas fa-eye"></i> 94</span>
+                    <span><i class="fas fa-code-branch"></i> 8</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3 class="project-title">Project 006</h3>
+                    <span class="project-featured">Featured</span>
+                </div>
+                <div class="project-category desktop">Desktop App</div>
+                <p class="project-description">
+                    A comprehensive desktop app built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Tauri</span>
+                    <span class="tech-tag">Rust</span>
+                    <span class="tech-tag">Svelte</span>
+                </div>
+                <div class="project-stats">
+                    <span><i class="fas fa-star"></i> 41</span>
+                    <span><i class="fas fa-eye"></i> 76</span>
+                    <span><i class="fas fa-code-branch"></i> 15</span>
+                </div>
+                <div class="project-buttons">
+                    <a href="#" class="btn-project code">
+                        <i class="fab fa-github"></i>
+                        Code
+                    </a>
+                    <a href="#" class="btn-project live">
+                        <i class="fas fa-external-link-alt"></i>
+                        Live
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="section-header">
+            <h2 class="section-title">My <span class="highlight">Journey</span></h2>
+            <p class="section-subtitle">Professional experience and continuous learning path</p>
+            <div class="section-badge">
+                <i class="fas fa-building"></i>
+                Building the future, one project at a time 🚀
+            </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div style="margin-bottom: 4rem;">
+            <h3 style="color: #5ebbaa; font-size: 1.75rem; margin-bottom: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                <i class="fas fa-briefcase"></i> Work Experience
+            </h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Senior Full Stack Developer</h3>
+                            <div class="timeline-company"><i class="fas fa-building"></i> TechCorp Solutions</div>
+                            <span class="timeline-type">Full-time</span>
+                        </div>
+                        <div class="timeline-date">
+                            <i class="fas fa-calendar"></i> 2022 - Present<br>
+                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> San Francisco, CA</div>
+                        </div>
+                    </div>
+                    <p class="timeline-description">
+                        Leading development of enterprise web applications using React, Node.js, and AWS. Mentoring junior developers and implementing best practices for code quality and performance.
+                    </p>
+                    <div class="timeline-achievements">
+                        <h4><i class="fas fa-trophy"></i> Key Achievements</h4>
+                        <ul>
+                            <li>Improved application performance by 40%</li>
+                            <li>Led a team of 5 developers</li>
+                            <li>Implemented CI/CD pipeline reducing deployment time by 60%</li>
+                            <li>Architected microservices handling 1M+ requests daily</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-technologies">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Docker</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Full Stack Developer</h3>
+                            <div class="timeline-company"><i class="fas fa-building"></i> StartupXYZ</div>
+                            <span class="timeline-type">Full-time</span>
+                        </div>
+                        <div class="timeline-date">
+                            <i class="fas fa-calendar"></i> 2020 - 2022<br>
+                            <div class="timeline-location"><i class="fas fa-map-marker-alt"></i> Austin, TX</div>
+                        </div>
+                    </div>
+                    <p class="timeline-description">
+                        Developed and maintained full-stack applications for a fast-growing startup. Collaborated closely with the design and product teams to deliver user-centered solutions.
+                    </p>
+                    <div class="timeline-achievements">
+                        <h4><i class="fas fa-trophy"></i> Key Achievements</h4>
+                        <ul>
+                            <li>Built the company's main product from MVP to production</li>
+                            <li>Reduced page load times by 50% through optimization</li>
+                            <li>Implemented real-time features serving 10,000+ concurrent users</li>
+                            <li>Mentored 3 junior developers and conducted code reviews</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-technologies">
+                        <span class="tech-badge">Vue.js</span>
+                        <span class="tech-badge">Express.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">Socket.io</span>
+                        <span class="tech-badge">Redis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div>
+            <h3 style="color: #e07a5f; font-size: 1.75rem; margin-bottom: 2rem; text-align: center; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+                <i class="fas fa-graduation-cap"></i> Education & Learning
+            </h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Bachelor of Science in Computer Science</h3>
+                            <div class="timeline-company"><i class="fas fa-university"></i> University of Technology</div>
+                        </div>
+                        <div class="timeline-date">
+                            <i class="fas fa-calendar"></i> 2014 - 2018
+                        </div>
+                    </div>
+                    <p class="timeline-description">
+                        Focused on software engineering, algorithms, and data structures. Graduated Magna Cum Laude.
+                    </p>
+                    <div class="timeline-achievements">
+                        <ul>
+                            <li>GPA: 3.8/4.0</li>
+                            <li>Dean's List 6 semesters</li>
+                            <li>Computer Science Society President</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <div>
+                            <h3 class="timeline-title">Various Online Certifications</h3>
+                            <div class="timeline-company"><i class="fas fa-laptop"></i> Coursera, Udemy, freeCodeCamp</div>
+                        </div>
+                        <div class="timeline-date">
+                            <i class="fas fa-calendar"></i> 2018 - Present
+                        </div>
+                    </div>
+                    <p class="timeline-description">
+                        Continuous learning through online platforms to stay current with latest technologies.
+                    </p>
+                    <div class="timeline-achievements">
+                        <ul>
+                            <li>AWS Certified Developer</li>
+                            <li>Google Cloud Professional</li>
+                            <li>50+ Completed Courses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
+            <p class="section-subtitle">
+                Interested in collaborating or have a project in mind? I'd love to hear from you and discuss how we can work together.
             </p>
-          </article>
+            <div class="section-badge">
+                <i class="fas fa-heart"></i>
+                Let's create something amazing together 💖
+            </div>
+        </div>
+        
+        <div class="contact-content">
+            <div class="contact-form">
+                <h3><i class="fas fa-paper-plane"></i> Send a Message</h3>
+                <p>Fill out the form below and I'll get back to you as soon as possible.</p>
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="Project collaboration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Tell me about your project or idea..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
 
-          <article class="bg-white/3 rounded-xl p-4">
-            <img src="assets/project-2.png" alt="Project 2" class="w-full h-36 object-cover rounded-md">
-            <h3 class="mt-3 font-semibold text-lg">Project Two</h3>
-            <p class="text-muted mt-1">Another short description — highlight the impact or tech used.</p>
-            <p class="mt-3">
-              <a class="font-semibold text-accent hover:underline mr-3" href="#" target="_blank" rel="noopener">Live</a>
-              <a class="font-semibold text-accent hover:underline" href="#" target="_blank" rel="noopener">Code</a>
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p>Reach out through any of these channels</p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>your.email@example.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+1 (555) 123-4567</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <p>San Francisco, CA</p>
+                    </div>
+                </div>
+
+                <div class="social-links">
+                    <h4>Follow Me</h4>
+                    <p>Connect with me on social platforms</p>
+                    <a href="https://github.com/yourusername" class="social-link">
+                        <div class="social-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h4>GitHub</h4>
+                            <p>@yourusername</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <p>&copy; 2025 DevPortfolio. Built with ❤️ and lots of ☕</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem; opacity: 0.8;">
+                Designed in Figma, built with HTML, CSS & JavaScript
             </p>
-          </article>
         </div>
-      </div>
-    </section>
+    </footer>
 
-    <!-- EXPERIENCE -->
-    <section id="experience" class="py-12">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-2xl font-semibold">Experience</h2>
-        <div class="mt-6 space-y-4">
-          <div class="bg-white/3 p-4 rounded-xl">
-            <h4 class="font-semibold">Senior Product Designer — Company</h4>
-            <span class="text-muted text-sm">2022 — Present</span>
-            <p class="mt-2 text-muted">Short summary of responsibilities and impact.</p>
-          </div>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-          <div class="bg-white/3 p-4 rounded-xl">
-            <h4 class="font-semibold">Product Designer — Company</h4>
-            <span class="text-muted text-sm">2019 — 2022</span>
-            <p class="mt-2 text-muted">Short summary of responsibilities and impact.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.pageYOffset >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-12">
-      <div class="max-w-6xl mx-auto px-6">
-        <h2 class="text-2xl font-semibold">Contact</h2>
-        <p class="mt-3 text-muted">If you’d like to work together or say hello — email me at <a class="text-accent" href="mailto:you@example.com">you@example.com</a>.</p>
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
 
-        <form class="mt-6 max-w-xl grid gap-3" action="#" onsubmit="alert('Replace form action with your endpoint or mailto link.'); return false;">
-          <label class="flex flex-col text-muted">
-            <span class="mb-1">Name</span>
-            <input class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" type="text" name="name" required>
-          </label>
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
 
-          <label class="flex flex-col text-muted">
-            <span class="mb-1">Email</span>
-            <input class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" type="email" name="email" required>
-          </label>
+        // Projects filter functionality
+        const searchInput = document.querySelector('.filter-search');
+        const categoryFilter = document.querySelector('.filter-dropdown');
+        const projectCards = document.querySelectorAll('.project-card');
 
-          <label class="flex flex-col text-muted">
-            <span class="mb-1">Message</span>
-            <textarea class="px-3 py-2 rounded-lg bg-white/5 border border-white/5 text-white focus:outline-none" name="message" rows="4" required></textarea>
-          </label>
+        function filterProjects() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value.toLowerCase();
 
-          <button class="w-max px-4 py-2 rounded-xl bg-accent text-black font-semibold">Send message</button>
-        </form>
-      </div>
-    </section>
-  </main>
+            projectCards.forEach(card => {
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+                const description = card.querySelector('.project-description').textContent.toLowerCase();
+                const category = card.querySelector('.project-category').textContent.toLowerCase();
+                const techTags = Array.from(card.querySelectorAll('.tech-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matchesSearch = title.includes(searchTerm) || 
+                                    description.includes(searchTerm) || 
+                                    techTags.some(tech => tech.includes(searchTerm));
+                
+                const matchesCategory = selectedCategory === 'all categories' || 
+                                      category.includes(selectedCategory.replace(' app', ''));
 
-  <!-- Footer -->
-  <footer class="border-t border-white/5 mt-12">
-    <div class="max-w-6xl mx-auto px-6 py-6 text-center text-muted">
-      <p>© <span id="year"></span> Your Name — Built with ❤️</p>
-    </div>
-  </footer>
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeIn 0.5s ease';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
 
-  <script>
-    // set year
-    document.getElementById('year').textContent = new Date().getFullYear();
+        searchInput.addEventListener('input', filterProjects);
+        categoryFilter.addEventListener('change', filterProjects);
 
-    // nav toggle (mobile)
-    const navToggle = document.getElementById('navToggle');
-    const nav = document.getElementById('nav');
-    navToggle.addEventListener('click', () => {
-      nav.classList.toggle('hidden');
-    });
-  </script>
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message (in a real application, you'd send this to a server)
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navMenu = document.querySelector('.nav-menu');
+            navMenu.classList.toggle('active');
+        });
+
+        // Add fade-in animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(20px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+            
+            .nav-menu.active {
+                display: flex !important;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                padding: 1rem 2rem;
+            }
+            
+            @media (max-width: 768px) {
+                .nav-menu {
+                    display: none;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.project-card, .timeline-item, .skill-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some dynamic typing effect to the hero section
+        const titles = ['Full Stack Developer', 'Web Developer', 'Software Engineer', 'Problem Solver'];
+        let currentTitleIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const heroTitle = document.querySelector('.hero h1');
+            if (!heroTitle) return;
+
+            const currentTitle = titles[currentTitleIndex];
+            
+            if (isDeleting) {
+                heroTitle.innerHTML = `${currentTitle.substring(0, currentCharIndex - 1)} <span class="highlight">Stack</span><br>Developer`;
+                currentCharIndex--;
+            } else {
+                heroTitle.innerHTML = `${currentTitle.substring(0, currentCharIndex + 1)} <span class="highlight">Stack</span><br>Developer`;
+                currentCharIndex++;
+            }
+
+            if (!isDeleting && currentCharIndex === currentTitle.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentTitleIndex = (currentTitleIndex + 1) % titles.length;
+            }
+
+            setTimeout(typeEffect, isDeleting ? 50 : 150);
+        }
+
+        // Start typing effect after page loads
+        window.addEventListener('load', () => {
+            setTimeout(typeEffect, 1000);
+        });
+
+        // Add scroll-triggered counters for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number, .projects-stat-number, .about-stat-number');
+            
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.match(/\d+/)?.[0] || '0');
+                if (target === 0) return;
+                
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    const originalText = counter.textContent;
+                    const newText = originalText.replace(/\d+/, Math.floor(current).toString());
+                    counter.textContent = newText;
+                }, 20);
+            });
+        }
+
+        // Trigger counter animation when stats section is in view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.hero-stats, .projects-stats').forEach(el => {
+            statsObserver.observe(el);
+        });
+    </script>
 </body>
 </html>
