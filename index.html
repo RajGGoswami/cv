@@ -446,12 +446,23 @@
             margin-top: 0.5rem;
         }
 
+        .projects-controls {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+        }
+
         .projects-filter {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
             gap: 1rem;
-            margin-bottom: 3rem;
-            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            align-items: center;
         }
 
         .filter-search {
@@ -459,7 +470,12 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             font-size: 0.9rem;
-            min-width: 300px;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-search:focus {
+            outline: none;
+            border-color: #5ebbaa;
         }
 
         .filter-dropdown {
@@ -469,12 +485,203 @@
             font-size: 0.9rem;
             background: white;
             cursor: pointer;
+            transition: border-color 0.3s ease;
+        }
+
+        .filter-dropdown:focus {
+            outline: none;
+            border-color: #5ebbaa;
+        }
+
+        .view-toggle {
+            display: flex;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 0.25rem;
+        }
+
+        .view-btn {
+            padding: 0.5rem 0.75rem;
+            border: none;
+            background: transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+
+        .view-btn.active {
+            background: white;
+            color: #5ebbaa;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .projects-container {
+            max-height: 80vh;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #5ebbaa #f1f5f9;
+        }
+
+        .projects-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .projects-container::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 3px;
+        }
+
+        .projects-container::-webkit-scrollbar-thumb {
+            background: #5ebbaa;
+            border-radius: 3px;
+        }
+
+        .projects-container::-webkit-scrollbar-thumb:hover {
+            background: #4a9a8a;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .projects-grid.grid-view {
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        }
+
+        .projects-grid.list-view {
+            grid-template-columns: 1fr;
+        }
+
+        .projects-grid.compact-view {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .project-card.list-view {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .project-card.compact-view {
+            padding: 1rem;
+        }
+
+        .project-card.compact-view .project-description {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .load-more-btn {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.75rem 2rem;
+            background: #5ebbaa;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .load-more-btn:hover {
+            background: #4a9a8a;
+            transform: translateY(-2px);
+        }
+
+        .load-more-btn:disabled {
+            background: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 2rem;
+            color: #64748b;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #e2e8f0;
+            border-radius: 50%;
+            border-top-color: #5ebbaa;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #64748b;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #cbd5e1;
+        }
+
+        .projects-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            background: white;
+            color: #64748b;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .page-btn:hover {
+            border-color: #5ebbaa;
+            color: #5ebbaa;
+        }
+
+        .page-btn.active {
+            background: #5ebbaa;
+            color: white;
+            border-color: #5ebbaa;
+        }
+
+        .page-btn:disabled {
+            background: #f8fafc;
+            color: #cbd5e1;
+            cursor: not-allowed;
         }
 
         .project-card {
@@ -1208,56 +1415,449 @@
                 <div class="projects-stat-label">Live Demos</div>
             </div>
         </div>
-        <div class="projects-filter">
-            <input type="text" placeholder="Search projects, technologies..." class="filter-search">
-            <select class="filter-dropdown">
-                <option>All Categories</option>
-                <option>Web App</option>
-                <option>Mobile App</option>
-                <option>Desktop App</option>
-                <option>Game</option>
-            </select>
+        
+        <div class="projects-controls">
+            <div class="projects-filter">
+                <input type="text" placeholder="Search projects, technologies..." class="filter-search" id="projectSearch">
+                <select class="filter-dropdown" id="categoryFilter">
+                    <option value="all">All Categories</option>
+                    <option value="web">Web App</option>
+                    <option value="mobile">Mobile App</option>
+                    <option value="desktop">Desktop App</option>
+                    <option value="game">Game</option>
+                    <option value="api">API</option>
+                    <option value="tool">Tool</option>
+                    <option value="library">Library</option>
+                </select>
+                <select class="filter-dropdown" id="techFilter">
+                    <option value="all">All Technologies</option>
+                    <option value="react">React</option>
+                    <option value="vue">Vue.js</option>
+                    <option value="angular">Angular</option>
+                    <option value="node">Node.js</option>
+                    <option value="python">Python</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="typescript">TypeScript</option>
+                </select>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="compact">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="results-info">
+                <span id="resultsCount">Showing 12 of 108 projects</span>
+                <span id="loadingIndicator" class="loading-spinner" style="display: none;">
+                    <div class="spinner"></div>
+                </span>
+            </div>
         </div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">Project 001</h3>
-                    <span class="project-featured">Featured</span>
+
+        <div class="projects-container">
+            <div class="projects-grid grid-view" id="projectsGrid">
+                <!-- Existing project cards will be here -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <span class="project-featured">Featured</span>
+                    </div>
+                    <div class="project-category web">Web App</div>
+                    <p class="project-description">
+                        A full-featured e-commerce platform with payment integration, inventory management, and admin dashboard. Built with modern technologies and best practices.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 89</span>
+                        <span><i class="fas fa-eye"></i> 156</span>
+                        <span><i class="fas fa-code-branch"></i> 23</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
                 </div>
-                <div class="project-category game">Game</div>
-                <p class="project-description">
-                    A comprehensive game built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">TensorFlow</span>
-                    <span class="tech-tag">Jupyter</span>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Task Management App</h3>
+                        <span class="project-featured">Featured</span>
+                    </div>
+                    <div class="project-category mobile">Mobile App</div>
+                    <p class="project-description">
+                        Cross-platform mobile app for team collaboration and task management with real-time updates and offline synchronization.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 67</span>
+                        <span><i class="fas fa-eye"></i> 234</span>
+                        <span><i class="fas fa-code-branch"></i> 18</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
                 </div>
-                <div class="project-stats">
-                    <span><i class="fas fa-star"></i> 57</span>
-                    <span><i class="fas fa-eye"></i> 66</span>
-                    <span><i class="fas fa-code-branch"></i> 6</span>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">AI Chat Bot</h3>
+                        <span class="project-featured">Featured</span>
+                    </div>
+                    <div class="project-category tool">Tool</div>
+                    <p class="project-description">
+                        Intelligent chatbot with natural language processing, machine learning capabilities, and multi-platform integration.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 134</span>
+                        <span><i class="fas fa-eye"></i> 456</span>
+                        <span class="fas fa-code-branch"></i> 34</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
                 </div>
-                <div class="project-buttons">
-                    <a href="#" class="btn-project code">
-                        <i class="fab fa-github"></i>
-                        Code
-                    </a>
-                    <a href="#" class="btn-project live">
-                        <i class="fas fa-external-link-alt"></i>
-                        Live
-                    </a>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Data Visualization Dashboard</h3>
+                    </div>
+                    <div class="project-category web">Web App</div>
+                    <p class="project-description">
+                        Interactive dashboard for data analysis with real-time charts, filters, and export functionality. Handles large datasets efficiently.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 52</span>
+                        <span><i class="fas fa-eye"></i> 189</span>
+                        <span><i class="fas fa-code-branch"></i> 12</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Blockchain Voting System</h3>
+                    </div>
+                    <div class="project-category web">Web App</div>
+                    <p class="project-description">
+                        Secure and transparent voting system built on blockchain technology with smart contracts and decentralized architecture.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Solidity</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Web3.js</span>
+                        <span class="tech-tag">Ethereum</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 78</span>
+                        <span><i class="fas fa-eye"></i> 298</span>
+                        <span><i class="fas fa-code-branch"></i> 21</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Weather Prediction API</h3>
+                    </div>
+                    <div class="project-category api">API</div>
+                    <p class="project-description">
+                        RESTful API for weather prediction using machine learning models and real-time weather data from multiple sources.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">scikit-learn</span>
+                        <span class="tech-tag">Redis</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 43</span>
+                        <span><i class="fas fa-eye"></i> 167</span>
+                        <span><i class="fas fa-code-branch"></i> 9</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Social Media Desktop App</h3>
+                    </div>
+                    <div class="project-category desktop">Desktop App</div>
+                    <p class="project-description">
+                        Cross-platform desktop application for social media management with scheduling, analytics, and multi-account support.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Electron</span>
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Chart.js</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 91</span>
+                        <span><i class="fas fa-eye"></i> 332</span>
+                        <span><i class="fas fa-code-branch"></i> 27</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Code Editor Extension</h3>
+                    </div>
+                    <div class="project-category tool">Tool</div>
+                    <p class="project-description">
+                        VS Code extension for enhanced productivity with custom themes, snippets, and intelligent code suggestions.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">VS Code API</span>
+                        <span class="tech-tag">JSON</span>
+                        <span class="tech-tag">CSS</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 156</span>
+                        <span><i class="fas fa-eye"></i> 1.2k</span>
+                        <span><i class="fas fa-code-branch"></i> 45</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">3D Game Engine</h3>
+                    </div>
+                    <div class="project-category game">Game</div>
+                    <p class="project-description">
+                        Custom 3D game engine built from scratch with physics simulation, lighting effects, and cross-platform support.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">OpenGL</span>
+                        <span class="tech-tag">GLFW</span>
+                        <span class="tech-tag">GLM</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 203</span>
+                        <span><i class="fas fa-eye"></i> 876</span>
+                        <span><i class="fas fa-code-branch"></i> 67</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">React Component Library</h3>
+                    </div>
+                    <div class="project-category library">Library</div>
+                    <p class="project-description">
+                        Comprehensive React component library with TypeScript support, Storybook documentation, and npm package distribution.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">Storybook</span>
+                        <span class="tech-tag">Rollup</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 289</span>
+                        <span><i class="fas fa-eye"></i> 1.5k</span>
+                        <span><i class="fas fa-code-branch"></i> 89</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">DevOps Automation Tool</h3>
+                    </div>
+                    <div class="project-category tool">Tool</div>
+                    <p class="project-description">
+                        Command-line tool for automating deployment pipelines, server monitoring, and infrastructure management.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Go</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">AWS CLI</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 112</span>
+                        <span><i class="fas fa-eye"></i> 445</span>
+                        <span><i class="fas fa-code-branch"></i> 31</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3 class="project-title">Online Learning Platform</h3>
+                    </div>
+                    <div class="project-category web">Web App</div>
+                    <p class="project-description">
+                        Full-stack learning management system with video streaming, progress tracking, quizzes, and certificate generation.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Prisma</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">AWS S3</span>
+                    </div>
+                    <div class="project-stats">
+                        <span><i class="fas fa-star"></i> 167</span>
+                        <span><i class="fas fa-eye"></i> 623</span>
+                        <span><i class="fas fa-code-branch"></i> 42</span>
+                    </div>
+                    <div class="project-buttons">
+                        <a href="#" class="btn-project code">
+                            <i class="fab fa-github"></i>
+                            Code
+                        </a>
+                        <a href="#" class="btn-project live">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live
+                        </a>
+                    </div>
                 </div>
             </div>
             
-            <div class="project-card">
-                <div class="project-header">
-                    <h3 class="project-title">Project 002</h3>
-                    <span class="project-featured">Featured</span>
-                </div>
-                <div class="project-category desktop">Desktop App</div>
-                <p class="project-description">
-                    A comprehensive desktop app built with modern technologies. This project demonstrates advanced concepts and best practices in software development.
+            <div id="noResults" class="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No projects found</h3>
+                <p>Try adjusting your search terms or filters</p>
+            </div>
+        </div>
+
+        <div class="projects-pagination" id="projectsPagination">
+            <button class="page-btn" id="prevPage" disabled>
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="page-btn active" data-page="1">1</button>
+            <button class="page-btn" data-page="2">2</button>
+            <button class="page-btn" data-page="3">3</button>
+            <span class="page-btn">...</span>
+            <button class="page-btn" data-page="9">9</button>
+            <button class="page-btn" id="nextPage">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
                 </p>
                 <div class="project-tech">
                     <span class="tech-tag">Electron</span>
@@ -1698,39 +2298,310 @@
             document.getElementById('scrollProgress').style.width = scrolled + '%';
         });
 
-        // Projects filter functionality
-        const searchInput = document.querySelector('.filter-search');
-        const categoryFilter = document.querySelector('.filter-dropdown');
-        const projectCards = document.querySelectorAll('.project-card');
+        // Enhanced Projects Management System
+        class ProjectsManager {
+            constructor() {
+                this.allProjects = this.generateProjects(108); // Generate 108 projects
+                this.filteredProjects = [...this.allProjects];
+                this.currentPage = 1;
+                this.projectsPerPage = 12;
+                this.currentView = 'grid';
+                this.initializeElements();
+                this.bindEvents();
+                this.displayProjects();
+            }
 
-        function filterProjects() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedCategory = categoryFilter.value.toLowerCase();
+            initializeElements() {
+                this.searchInput = document.getElementById('projectSearch');
+                this.categoryFilter = document.getElementById('categoryFilter');
+                this.techFilter = document.getElementById('techFilter');
+                this.projectsGrid = document.getElementById('projectsGrid');
+                this.resultsCount = document.getElementById('resultsCount');
+                this.loadingIndicator = document.getElementById('loadingIndicator');
+                this.noResults = document.getElementById('noResults');
+                this.pagination = document.getElementById('projectsPagination');
+                this.viewButtons = document.querySelectorAll('.view-btn');
+            }
 
-            projectCards.forEach(card => {
-                const title = card.querySelector('.project-title').textContent.toLowerCase();
-                const description = card.querySelector('.project-description').textContent.toLowerCase();
-                const category = card.querySelector('.project-category').textContent.toLowerCase();
-                const techTags = Array.from(card.querySelectorAll('.tech-tag')).map(tag => tag.textContent.toLowerCase());
+            generateProjects(count) {
+                const categories = ['web', 'mobile', 'desktop', 'game', 'api', 'tool', 'library'];
+                const technologies = [
+                    ['React', 'Node.js', 'MongoDB', 'Express'],
+                    ['Vue.js', 'Nuxt.js', 'Firebase', 'Vuetify'],
+                    ['Angular', 'TypeScript', 'RxJS', 'Material'],
+                    ['Python', 'Django', 'PostgreSQL', 'Redis'],
+                    ['React Native', 'Expo', 'Redux', 'AsyncStorage'],
+                    ['Electron', 'Svelte', 'SQLite', 'Tauri'],
+                    ['Unity', 'C#', 'Blender', 'Photon'],
+                    ['Flutter', 'Dart', 'Firebase', 'Provider'],
+                    ['Next.js', 'Prisma', 'tRPC', 'Tailwind'],
+                    ['Rust', 'WebAssembly', 'Actix', 'Serde']
+                ];
+
+                const projectTypes = [
+                    'E-commerce Platform', 'Social Media App', 'Task Manager', 'Weather App',
+                    'Chat Application', 'Blog Platform', 'Portfolio Site', 'Game Engine',
+                    'API Gateway', 'Data Dashboard', 'File Manager', 'Music Player',
+                    'Video Streamer', 'Code Editor', 'IDE Plugin', 'CLI Tool',
+                    'Mobile Game', 'Web Scraper', 'Automation Tool', 'CMS System'
+                ];
+
+                return Array.from({ length: count }, (_, i) => {
+                    const techStack = technologies[i % technologies.length];
+                    const category = categories[i % categories.length];
+                    const projectType = projectTypes[i % projectTypes.length];
+                    
+                    return {
+                        id: i + 1,
+                        title: `${projectType} ${String(i + 1).padStart(3, '0')}`,
+                        category: category,
+                        description: this.generateDescription(projectType, category),
+                        technologies: techStack,
+                        stats: {
+                            stars: Math.floor(Math.random() * 200) + 10,
+                            views: Math.floor(Math.random() * 1000) + 50,
+                            forks: Math.floor(Math.random() * 50) + 1
+                        },
+                        featured: i < 20, // First 20 are featured
+                        githubUrl: `https://github.com/yourusername/project-${i + 1}`,
+                        liveUrl: `https://project-${i + 1}.vercel.app`
+                    };
+                });
+            }
+
+            generateDescription(projectType, category) {
+                const descriptions = {
+                    web: `A comprehensive web application built with modern technologies. Features responsive design, real-time updates, and optimized performance.`,
+                    mobile: `Cross-platform mobile application with native performance, offline capabilities, and intuitive user interface.`,
+                    desktop: `Native desktop application with cross-platform support, efficient resource usage, and professional UI/UX.`,
+                    game: `Interactive game with engaging gameplay mechanics, stunning graphics, and immersive audio experience.`,
+                    api: `RESTful API service with comprehensive documentation, authentication, and scalable architecture.`,
+                    tool: `Developer tool designed to improve productivity, automate workflows, and streamline development processes.`,
+                    library: `Reusable component library with TypeScript support, comprehensive documentation, and testing suite.`
+                };
+                return descriptions[category] || descriptions.web;
+            }
+
+            bindEvents() {
+                this.searchInput.addEventListener('input', this.debounce(() => this.filterProjects(), 300));
+                this.categoryFilter.addEventListener('change', () => this.filterProjects());
+                this.techFilter.addEventListener('change', () => this.filterProjects());
                 
-                const matchesSearch = title.includes(searchTerm) || 
-                                    description.includes(searchTerm) || 
-                                    techTags.some(tech => tech.includes(searchTerm));
-                
-                const matchesCategory = selectedCategory === 'all categories' || 
-                                      category.includes(selectedCategory.replace(' app', ''));
+                this.viewButtons.forEach(btn => {
+                    btn.addEventListener('click', () => this.changeView(btn.dataset.view));
+                });
 
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeIn 0.5s ease';
+                // Pagination events
+                this.pagination.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('page-btn') && e.target.dataset.page) {
+                        this.goToPage(parseInt(e.target.dataset.page));
+                    } else if (e.target.closest('#prevPage')) {
+                        this.goToPage(this.currentPage - 1);
+                    } else if (e.target.closest('#nextPage')) {
+                        this.goToPage(this.currentPage + 1);
+                    }
+                });
+            }
+
+            debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            filterProjects() {
+                this.showLoading();
+                
+                setTimeout(() => {
+                    const searchTerm = this.searchInput.value.toLowerCase();
+                    const selectedCategory = this.categoryFilter.value;
+                    const selectedTech = this.techFilter.value.toLowerCase();
+
+                    this.filteredProjects = this.allProjects.filter(project => {
+                        const matchesSearch = !searchTerm || 
+                            project.title.toLowerCase().includes(searchTerm) ||
+                            project.description.toLowerCase().includes(searchTerm) ||
+                            project.technologies.some(tech => tech.toLowerCase().includes(searchTerm));
+
+                        const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
+                        
+                        const matchesTech = selectedTech === 'all' || 
+                            project.technologies.some(tech => tech.toLowerCase().includes(selectedTech));
+
+                        return matchesSearch && matchesCategory && matchesTech;
+                    });
+
+                    this.currentPage = 1;
+                    this.displayProjects();
+                    this.hideLoading();
+                }, 500);
+            }
+
+            changeView(view) {
+                this.currentView = view;
+                this.viewButtons.forEach(btn => btn.classList.remove('active'));
+                document.querySelector(`[data-view="${view}"]`).classList.add('active');
+                
+                this.projectsGrid.className = `projects-grid ${view}-view`;
+                this.displayProjects();
+            }
+
+            displayProjects() {
+                const startIndex = (this.currentPage - 1) * this.projectsPerPage;
+                const endIndex = startIndex + this.projectsPerPage;
+                const projectsToShow = this.filteredProjects.slice(startIndex, endIndex);
+
+                if (projectsToShow.length === 0) {
+                    this.projectsGrid.style.display = 'none';
+                    this.noResults.style.display = 'block';
+                    this.pagination.style.display = 'none';
                 } else {
-                    card.style.display = 'none';
+                    this.projectsGrid.style.display = 'grid';
+                    this.noResults.style.display = 'none';
+                    this.pagination.style.display = 'flex';
+                    
+                    this.projectsGrid.innerHTML = projectsToShow.map(project => this.createProjectCard(project)).join('');
                 }
-            });
+
+                this.updateResultsCount();
+                this.updatePagination();
+            }
+
+            createProjectCard(project) {
+                const viewClass = this.currentView === 'list' ? 'list-view' : 
+                                this.currentView === 'compact' ? 'compact-view' : '';
+                
+                return `
+                    <div class="project-card ${viewClass}">
+                        <div class="project-header">
+                            <h3 class="project-title">${project.title}</h3>
+                            ${project.featured ? '<span class="project-featured">Featured</span>' : ''}
+                        </div>
+                        <div class="project-category ${project.category}">${this.getCategoryDisplay(project.category)}</div>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-tech">
+                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                        </div>
+                        <div class="project-stats">
+                            <span><i class="fas fa-star"></i> ${project.stats.stars}</span>
+                            <span><i class="fas fa-eye"></i> ${project.stats.views}</span>
+                            <span><i class="fas fa-code-branch"></i> ${project.stats.forks}</span>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="${project.githubUrl}" class="btn-project code" target="_blank">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            <a href="${project.liveUrl}" class="btn-project live" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+
+            getCategoryDisplay(category) {
+                const displays = {
+                    web: 'Web App',
+                    mobile: 'Mobile App',
+                    desktop: 'Desktop App',
+                    game: 'Game',
+                    api: 'API',
+                    tool: 'Tool',
+                    library: 'Library'
+                };
+                return displays[category] || category;
+            }
+
+            updateResultsCount() {
+                const start = (this.currentPage - 1) * this.projectsPerPage + 1;
+                const end = Math.min(this.currentPage * this.projectsPerPage, this.filteredProjects.length);
+                this.resultsCount.textContent = `Showing ${start}-${end} of ${this.filteredProjects.length} projects`;
+            }
+
+            updatePagination() {
+                const totalPages = Math.ceil(this.filteredProjects.length / this.projectsPerPage);
+                
+                if (totalPages <= 1) {
+                    this.pagination.style.display = 'none';
+                    return;
+                }
+
+                let paginationHTML = '';
+                
+                // Previous button
+                paginationHTML += `<button class="page-btn" id="prevPage" ${this.currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i>
+                </button>`;
+
+                // Page numbers
+                const maxVisiblePages = 5;
+                let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
+                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                
+                if (endPage - startPage + 1 < maxVisiblePages) {
+                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                }
+
+                if (startPage > 1) {
+                    paginationHTML += `<button class="page-btn" data-page="1">1</button>`;
+                    if (startPage > 2) {
+                        paginationHTML += `<span class="page-btn">...</span>`;
+                    }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    paginationHTML += `<button class="page-btn ${i === this.currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                }
+
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) {
+                        paginationHTML += `<span class="page-btn">...</span>`;
+                    }
+                    paginationHTML += `<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;
+                }
+
+                // Next button
+                paginationHTML += `<button class="page-btn" id="nextPage" ${this.currentPage === totalPages ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-right"></i>
+                </button>`;
+
+                this.pagination.innerHTML = paginationHTML;
+            }
+
+            goToPage(page) {
+                const totalPages = Math.ceil(this.filteredProjects.length / this.projectsPerPage);
+                if (page >= 1 && page <= totalPages) {
+                    this.currentPage = page;
+                    this.displayProjects();
+                    
+                    // Scroll to top of projects section
+                    document.getElementById('projects').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                }
+            }
+
+            showLoading() {
+                this.loadingIndicator.style.display = 'block';
+            }
+
+            hideLoading() {
+                this.loadingIndicator.style.display = 'none';
+            }
         }
 
-        searchInput.addEventListener('input', filterProjects);
-        categoryFilter.addEventListener('change', filterProjects);
+        // Initialize Projects Manager
+        let projectsManager;
+        document.addEventListener('DOMContentLoaded', () => {
+            projectsManager = new ProjectsManager();
+        });
 
         // Contact form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
